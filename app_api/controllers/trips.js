@@ -12,7 +12,28 @@ const tripsList = async(req, res) => {
 
         // Uncomment the following line to show results of query
         // On the console
-        console.log(q);
+        // console.log(q);
+
+        if(!q) {
+            //Database returned no data
+            return res
+                .status(404)
+                .json(err);
+        } else {
+            return res
+                .status(200)
+                .json(q);
+        }
+};
+
+const tripsFindByCode = async(req, res) => {
+    const q = await Model
+        .find({ 'code' : req.params.tripCode }) //No filter, return all records
+        .exec();
+
+        // Uncomment the following line to show results of query
+        // On the console
+        // console.log(q);
 
         if(!q) {
             //Database returned no data
@@ -27,5 +48,6 @@ const tripsList = async(req, res) => {
 };
 
 module.exports = {
-    tripsList
+    tripsList,
+    tripsFindByCode
 }
