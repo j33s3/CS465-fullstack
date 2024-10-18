@@ -10,6 +10,8 @@ const connect = () => {
     }), 1000);
 }
 
+
+
 // Monitor connection events
 mongoose.connection.on('connected', () => {
     console.log(`Mongoose connected to ${dbURI}`);
